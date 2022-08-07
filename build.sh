@@ -58,9 +58,16 @@ fi
 
 ../../configure --prefix=$(pwd)/../../$REL_DIR \
                             --build=$target \
-                            --disable-werror \
+                            --disable-binutils \
+                            --disable-gold \
+                            --disable-ld \
+                            --disable-gprof \
+                            --disable-gprofng \
+                            --disable-gas \
+                            --disable-guile \
                             --enable-64-bit-bfd \
-                            --with-guile=no \
+                            --enable-silent-rules \
+                            --enable-werror \
                             --with-python=$(which python3) \
                             $with_system_readline $enable_targets
 
