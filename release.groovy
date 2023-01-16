@@ -10,7 +10,7 @@ def build() {
                   branches: [[name: "*/${GDB_BRANCH}"]],
                   userRemoteConfigs: [[url: GDB_REPO]],
                   extensions: [[$class: 'CloneOption', noTags: true, reference: '', shallow: true],
-                               [$class: 'RelativeTargetDirectory', relativeTargetDir: 'binutils-gdb']]])
+                               [$class: 'RelativeTargetDirectory', relativeTargetDir: 'src/binutils-gdb']]])
     }
 
     stage ( "Compile" ) {

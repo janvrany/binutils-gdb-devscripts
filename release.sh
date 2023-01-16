@@ -4,10 +4,17 @@ set -e
 
 : ${GDB_REPO:=https://github.com/janvrany/binutils-gdb.git}
 : ${GDB_BRANCH:=users/jv/vdb}
+: ${WORKSPACE:=$(pwd)}
+: ${BUILD_ID:=_${USER}}
 
-SRC_DIR=binutils-gdb
+SRC_DIR="$WORKSPACE/src/binutils-gdb"
+TMPDIR="$WORKSPACE/tmp"
+
+mkdir -p "${TMPDIR}"
+export TMPDIR
 
 if [ ! -d "${SRC_DIR}" ]; then
+    mkdir -p $(dirname $SRC_DIR)
     git clone --depth 1 --branch "$GDB_BRANCH" "$GDB_REPO" "$SRC_DIR"
 fi
 
@@ -21,10 +28,6 @@ fi
 if [ -z "$target" ]; then
     echo "No \\$target variable defined!"
     exit 1
-fi
-
-if [ -z "${BUILD_ID}" ]; then
-    BUILD_ID="_${USER}"
 fi
 
 BLD_DIR="${SRC_DIR}/build/${target}"
@@ -64,6 +67,7 @@ fi
                             --disable-gprof \
                             --disable-gprofng \
                             --disable-gas \
+                            --disable-sim \
                             --disable-guile \
                             --enable-64-bit-bfd \
                             --enable-silent-rules \
