@@ -14,7 +14,7 @@ def build() {
     }
 
     stage ( "Compile" ) {
-        sh "bash -x build.sh"
+        sh "bash -x release.sh"
     }
     stage ( "Archive artifacts" ) {
         archiveArtifacts "binutils-gdb/release/gdb_${target}*${env.BUILD_NUMBER}.zip"
