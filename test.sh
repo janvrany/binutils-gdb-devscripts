@@ -13,14 +13,18 @@ if [ ! -d "${SRCDIR}" ]; then
     mkdir -p $(dirname $SRCDIR)
     git clone --depth 1 --branch "$GDB_BRANCH" "$GDB_REPO" "$SRCDIR"
 else
-    git -C "${SRCDIR}" pull
+    if git -C "${SRCDIR}" symbolic-ref -q HEAD; then
+        git -C "${SRCDIR}" pull
+    fi
 fi
 
 if [ ! -d "${SCRIPTDIR}" ]; then
     mkdir -p $(dirname $SCRIPTDIR)
     git clone --depth 1 "https://github.com/lttng/lttng-ci" "$SCRIPTDIR"
 else
-   git -C "${SCRIPTDIR}" pull
+    if git -C "${SCRIPTDIR}" symbolic-ref -q HEAD; then
+        git -C "${SCRIPTDIR}" pull
+    fi
 fi
 
 #
