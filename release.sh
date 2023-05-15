@@ -71,7 +71,7 @@ fi
                             --disable-guile \
                             --enable-64-bit-bfd \
                             --enable-silent-rules \
-                            --enable-werror \
+                            --disable-werror \
                             --with-python=$(which python3) \
                             $with_system_readline $enable_targets
 
