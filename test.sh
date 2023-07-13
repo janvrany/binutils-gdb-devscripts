@@ -38,7 +38,7 @@ diff --git a/scripts/binutils-gdb/build.sh b/scripts/binutils-gdb/build.sh
 index 29027cf..ca3bbcd 100755
 --- a/scripts/binutils-gdb/build.sh
 +++ b/scripts/binutils-gdb/build.sh
-@@ -402,6 +402,11 @@ UNRESOLVED: gdb.ada/packed_array_assign.exp: value of npr
+@@ -402,6 +402,12 @@ UNRESOLVED: gdb.ada/packed_array_assign.exp: value of npr
  UNRESOLVED: gdb.base/gdb-sigterm.exp: 50 SIGTERM passes
  UNRESOLVED: gdb.base/readline-ask.exp: bell for more message
  UNRESOLVED: gdb.python/py-disasm.exp: global_disassembler=GlobalPreInfoDisassembler: disassemble main
@@ -47,6 +47,7 @@ index 29027cf..ca3bbcd 100755
 +DUPLICATE: gdb.fortran/array-repeat.exp: array-repeat.exp
 +FAIL: gdb.mi/mi-multi-commands.exp: args=separate-mi-tty: look for second command output, command length 2023 (timeout)
 +FAIL: gdb.reverse/test_ioctl_TCSETSW.exp: handle TCSETSW
++FAIL: gdb.base/huge.exp: print a very large data object (timeout)
  EOF
  
  cat <<'EOF' > known-failures-re-unix
