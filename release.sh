@@ -4,8 +4,15 @@ set -e
 
 : ${GDB_REPO:=https://github.com/janvrany/binutils-gdb.git}
 : ${GDB_BRANCH:=users/jv/vdb}
-: ${WORKSPACE:=$(pwd)}
+: ${WORKSPACE:=$(dirname $0)}
 : ${BUILD_ID:=_${USER}}
+
+
+if [ "x$OS" == "xWindows_NT" ]; then
+    WORKSPACE=$(cygpath -a $WORKSPACE)
+else
+    WORKSPACE=$(realpath $WORKSPACE)
+fi
 
 SRC_DIR="$WORKSPACE/src/binutils-gdb"
 TMPDIR="$WORKSPACE/tmp"
@@ -19,7 +26,7 @@ if [ ! -d "${SRC_DIR}" ]; then
 fi
 
 if [ -z "$target" ]; then
-    target=$(./$SRC_DIR/config.guess)
+    target=$($SRC_DIR/config.guess)
     if [ "$target" == "x86_64-pc-msys" ]; then
         target=x86_64-w64-mingw32
     fi
@@ -59,7 +66,7 @@ elif [ "x$OS" == "xWindows_NT" ]; then
     enable_targets=
 fi
 
-../../configure --prefix=$(pwd)/../../$REL_DIR \
+../../configure --prefix=$REL_DIR \
                             --build=$target \
                             --disable-binutils \
                             --disable-gold \

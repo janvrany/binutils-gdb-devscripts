@@ -4,7 +4,7 @@ set -e
 
 : ${GDB_REPO:=git://sourceware.org/git/binutils-gdb.git}
 : ${GDB_BRANCH:=master}
-: ${WORKSPACE:=$(pwd)}
+: ${WORKSPACE:=$(dirname $0)}
 
 SRCDIR=$WORKSPACE/src/binutils-gdb
 SCRIPTDIR=$WORKSPACE/src/lttng-ci
