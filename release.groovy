@@ -17,7 +17,7 @@ def build() {
         sh "bash -x release.sh"
     }
     stage ( "Archive artifacts" ) {
-        archiveArtifacts "binutils-gdb/release/gdb_${target}*${env.BUILD_NUMBER}.zip"
+        archiveArtifacts "src/binutils-gdb/release/gdb_${target}*${env.BUILD_NUMBER}.zip"
     }
 }
 
