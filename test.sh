@@ -75,5 +75,28 @@ fi
 rm -rf results
 
 sed -i -e 's#=guile\-2\.2##g' "${SCRIPTDIR}/scripts/binutils-gdb/build.sh"
+
+
+
+print_header() {
+    set +x
+
+    local message=" $1 "
+    local message_len
+    local padding_len
+
+    message_len="${#message}"
+    padding_len=$(( (80 - (message_len)) / 2 ))
+
+    printf '\n'; printf -- '#%.0s' {1..80}; printf '\n'
+    printf -- '-%.0s' {1..80}; printf '\n'
+    printf -- '#%.0s' $(seq 1 $padding_len); printf '%s' "$message"; printf -- '#%.0s' $(seq 1 $padding_len); printf '\n'
+    printf -- '-%.0s' {1..80}; printf '\n'
+    printf -- '#%.0s' {1..80}; printf '\n\n'
+
+    set -x
+}
+
+. "${SCRIPTDIR}/scripts/common/print.sh"
 . "${SCRIPTDIR}/scripts/binutils-gdb/build.sh"
 
