@@ -86,12 +86,12 @@ make -j$(nproc)
 make install
 popd
 
-# As a coursery to Windows users, make .zip archive self-contained,
+# As a courtesy to Windows users, make .zip archive self-contained,
 # that is, include all required libraries and replace python with
 # embedable version.
 
 if [ "x$OS" == "xWindows_NT" ]; then
-        for dll in $(ldd $BLD_DIR/gdb/gdb.exe | grep mingw | cut -d \' \' -f 3); do
+        for dll in $(ldd $REL_DIR/bin/gdb.exe | grep mingw | cut -d ' ' -f 3); do
                 cp $dll $REL_DIR/bin
         done
         # Now, re-bundle it with embedable Pythom
