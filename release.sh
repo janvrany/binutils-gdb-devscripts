@@ -58,12 +58,7 @@ fi
 if [ "$(uname)" == "Linux" ]; then
     enable_targets=--enable-targets=all
 elif [ "x$OS" == "xWindows_NT" ]; then
-#    Sigh, recent GDB fails to compile AArch64 stuff on Windows because
-#    missing `getline()`. So, sorry, but only native targets on Windows
-#    builds.
-#
     enable_targets=--enable-targets=all
-    enable_targets=
 fi
 
 ../../configure --prefix=$REL_DIR \
