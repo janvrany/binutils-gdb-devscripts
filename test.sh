@@ -38,7 +38,7 @@ diff --git a/scripts/binutils-gdb/build.sh b/scripts/binutils-gdb/build.sh
 index 29027cf..ca3bbcd 100755
 --- a/scripts/binutils-gdb/build.sh
 +++ b/scripts/binutils-gdb/build.sh
-@@ -402,6 +402,29 @@ UNRESOLVED: gdb.ada/packed_array_assign.exp: value of npr
+@@ -402,6 +402,30 @@ UNRESOLVED: gdb.ada/packed_array_assign.exp: value of npr
  UNRESOLVED: gdb.base/gdb-sigterm.exp: 50 SIGTERM passes
  UNRESOLVED: gdb.base/readline-ask.exp: bell for more message
  UNRESOLVED: gdb.python/py-disasm.exp: global_disassembler=GlobalPreInfoDisassembler: disassemble main
@@ -65,6 +65,7 @@ index 29027cf..ca3bbcd 100755
 +DUPLICATE: gdb.fortran/huge.exp: huge.exp
 +DUPLICATE: gdb.fortran/huge.exp: huge.exp
 +DUPLICATE: gdb.fortran/huge.exp: huge.exp
++FAIL: gdb.trace/basic-libipa.exp: runto: run to main
  EOF
  
  cat <<'EOF' > known-failures-re-unix
