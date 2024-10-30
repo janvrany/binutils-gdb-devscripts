@@ -98,6 +98,15 @@ print_header() {
     set -x
 }
 
+function mktemp() {
+    if [ $1 == '-d' ]; then
+        mkdir -p "$TMPDIR/0000"
+        echo "$TMPDIR/0000"
+    else
+	/usr/bin/mktemp "${@}"
+    fi
+}
+
 . "${SCRIPTDIR}/scripts/common/print.sh"
 . "${SCRIPTDIR}/scripts/binutils-gdb/build.sh"
 
