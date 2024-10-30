@@ -38,7 +38,7 @@ diff --git a/scripts/binutils-gdb/build.sh b/scripts/binutils-gdb/build.sh
 index 29027cf..ca3bbcd 100755
 --- a/scripts/binutils-gdb/build.sh
 +++ b/scripts/binutils-gdb/build.sh
-@@ -402,6 +402,33 @@ UNRESOLVED: gdb.ada/packed_array_assign.exp: value of npr
+@@ -402,6 +402,58 @@ UNRESOLVED: gdb.ada/packed_array_assign.exp: value of npr
  UNRESOLVED: gdb.base/gdb-sigterm.exp: 50 SIGTERM passes
  UNRESOLVED: gdb.base/readline-ask.exp: bell for more message
  UNRESOLVED: gdb.python/py-disasm.exp: global_disassembler=GlobalPreInfoDisassembler: disassemble main
@@ -69,6 +69,31 @@ index 29027cf..ca3bbcd 100755
 +FAIL: gdb.debuginfod/corefile-mapped-file.exp: check value of pointer is unavailable with library file missing
 +FAIL: gdb.debuginfod/corefile-mapped-file.exp: check value of pointer is unavailable with wrong library in place
 +FAIL: gdb.base/corefile.exp: accessing read-only mmapped data in core file with coremmap.data removed
++FAIL: gdb.reverse/i386-avx-reverse.exp: continue to end of vpunpck_test
++FAIL: gdb.reverse/i386-avx-reverse.exp: continue to breakpoint: end vpunpck_test
++FAIL: gdb.reverse/i386-avx-reverse.exp: delete history for vpunpck_test
++FAIL: gdb.reverse/i386-avx-reverse.exp: leaving vpunpck_test (the program is no longer running)
++FAIL: gdb.reverse/i386-avx-reverse.exp: set xmm0 for vpbroadcast
++FAIL: gdb.reverse/i386-avx-reverse.exp: set xmm1 for vpbroadcast
++FAIL: gdb.reverse/i386-avx-reverse.exp: set xmm15 for vpbroadcast
++FAIL: gdb.reverse/i386-avx-reverse.exp: continue to breakpoint: start vpbroadcast_test (the program is no longer running)
++FAIL: gdb.reverse/i386-avx-reverse.exp: vpbroadcast: turn on process record
++FAIL: gdb.reverse/i386-avx-reverse.exp: continue to end of vpbroadcast_test (the program is no longer running)
++FAIL: gdb.reverse/i386-avx-reverse.exp: delete failed record history
++DUPLICATE: gdb.reverse/i386-avx-reverse.exp: delete failed record history
++FAIL: gdb.reverse/i386-avx-reverse.exp: continue to breakpoint: end vpbroadcast_test (the program is no longer running)
++FAIL: gdb.reverse/i386-avx-reverse.exp: leaving vpbroadcast (the program is no longer running)
++FAIL: gdb.reverse/i386-avx-reverse.exp: set ymm0 for vzeroupper
++FAIL: gdb.reverse/i386-avx-reverse.exp: set ymm1 for vzeroupper
++FAIL: gdb.reverse/i386-avx-reverse.exp: set ymm2 for vzeroupper
++FAIL: gdb.reverse/i386-avx-reverse.exp: set ymm15 for vpbroadcast
++FAIL: gdb.reverse/i386-avx-reverse.exp: continue to breakpoint: start vzeroupper_test (the program is no longer running)
++FAIL: gdb.reverse/i386-avx-reverse.exp: vzeroupper: turn on process record
++FAIL: gdb.reverse/i386-avx-reverse.exp: continue to end of vzeroupper_test (the program is no longer running)
++FAIL: gdb.reverse/i386-avx-reverse.exp: delete failed record history
++DUPLICATE: gdb.reverse/i386-avx-reverse.exp: delete failed record history
++FAIL: gdb.reverse/i386-avx-reverse.exp: continue to breakpoint: end vzeroupper_test (the program is no longer running)
++FAIL: gdb.reverse/i386-avx-reverse.exp: leaving vzeroupper (the program is no longer running)
  EOF
  
  cat <<'EOF' > known-failures-re-unix
