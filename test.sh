@@ -18,63 +18,7 @@ else
     fi
 fi
 
-#
-# Some tests are known to fail on my Jenkins, filter
-# them out.
-#
-if [ "x$JENKINS_URL" != "x" ]; then
-git -C "$SCRIPTDIR"  restore scripts/binutils-gdb/build.sh
-cat <<END_OF_PATCH | git -C "$SCRIPTDIR" apply -
-diff --git a/scripts/binutils-gdb/build.sh b/scripts/binutils-gdb/build.sh
-index 29027cf..ca3bbcd 100755
---- a/scripts/binutils-gdb/build.sh
-+++ b/scripts/binutils-gdb/build.sh
-@@ -402,6 +402,36 @@ UNRESOLVED: gdb.ada/packed_array_assign.exp: value of npr
- UNRESOLVED: gdb.base/gdb-sigterm.exp: 50 SIGTERM passes
- UNRESOLVED: gdb.base/readline-ask.exp: bell for more message
- UNRESOLVED: gdb.python/py-disasm.exp: global_disassembler=GlobalPreInfoDisassembler: disassemble main
-+FAIL: gdb.arch/amd64-disp-step-self-call.exp: check return address was updated correctly
-+DUPLICATE: gdb.fortran/array-indices.exp: array-indices.exp
-+DUPLICATE: gdb.fortran/array-repeat.exp: array-repeat.exp
-+FAIL: gdb.mi/mi-multi-commands.exp: args=separate-mi-tty: look for second command output, command length 2023 (timeout)
-+FAIL: gdb.reverse/test_ioctl_TCSETSW.exp: handle TCSETSW
-+FAIL: gdb.base/huge.exp: print a very large data object (timeout)
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+DUPLICATE: gdb.fortran/huge.exp: huge.exp
-+FAIL: gdb.trace/basic-libipa.exp: runto: run to main
-+FAIL: gdb.debuginfod/corefile-mapped-file.exp: check value of pointer is unavailable with library file missing
-+FAIL: gdb.debuginfod/corefile-mapped-file.exp: check value of pointer is unavailable with wrong library in place
-+FAIL: gdb.base/corefile.exp: accessing read-only mmapped data in core file with coremmap.data removed
-+FAIL: gdb.mi/mi-sym-info.exp: -symbol-info-functions --max-results 1 (unexpected output)
-+FAIL: gdb.mi/mi-sym-info.exp: -symbol-info-functions --max-results 2 (unexpected output)
-+FAIL: gdb.mi/mi-sym-info.exp: -symbol-info-types --max-results 3 (unexpected output)
- EOF
- 
- cat <<'EOF' > known-failures-re-unix
-END_OF_PATCH
-#git -C "$SCRIPTDIR" apply $(realpath extra-failing-tests.patch)
-fi
-
 rm -rf results
-
-sed -i -e 's#=guile\-2\.2##g' "${SCRIPTDIR}/scripts/binutils-gdb/build.sh"
-
-
 
 print_header() {
     set +x
