@@ -92,17 +92,32 @@ function use_ccache()
 rm -rf "$TMPDIR"
 mkdir -p "$TMPDIR"
 
-export TMPDIR
-export CFLAGS="-O2 -g -fsanitize=address"
-export CXXFLAGS="-O2 -g -fsanitize=address -D_GLIBCXX_DEBUG=1"
-export LDFLAGS="-fsanitize=address"
-export CC="cc"
-export CXX="c++"
+
+CFLAGS="-O2 -g -fsanitize=address "
+CXXFLAGS="-O2 -g -fsanitize=address -D_GLIBCXX_DEBUG=1 "
+LDFLAGS="-fsanitize=address"
+CC="cc"
+CXX="c++"
+
+# Add compiler-specific flags if needed
+major=$($CC -dumpversion | sed -e 's#\..*$##g')
+if [ "$major" -ge 14 ]; then
+    CFLAGS+="-Wno-error=array-bounds"
+    CXXFLAGS+="-Wno-error=array-bounds"
+fi
 
 if use_ccache; then
     CC="ccache $CC"
     CXX="ccache $CXX"
 fi
+
+# Exports
+export TMPDIR
+export CFLAGS
+export CXXFLAGS
+export LDFLAGS
+export CC
+export CXX
 
 # To make GDB find libcc1.so
 export LD_LIBRARY_PATH="/usr/lib/gcc/x86_64-linux-gnu/11:${LD_LIBRARY_PATH:-}"
