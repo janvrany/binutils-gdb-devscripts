@@ -7,7 +7,7 @@ set -e
 : ${WORKSPACE:=$(realpath $(dirname $0))}
 
 SRCDIR=$WORKSPACE/src/binutils-gdb
-SCRIPTDIR=$WORKSPACE/src/lttng-ci
+SCRIPTDIR=$WORKSPACE
 
 if [ ! -d "${SRCDIR}" ]; then
     mkdir -p $(dirname $SRCDIR)
@@ -16,14 +16,6 @@ else
     if git -C "${SRCDIR}" symbolic-ref -q HEAD; then
         git -C "${SRCDIR}" pull
     fi
-fi
-
-if [ ! -d "${SCRIPTDIR}" ]; then
-    mkdir -p "${SCRIPTDIR}"
-    git -C "${SCRIPTDIR}" init
-    git -C "${SCRIPTDIR}" remote add origin "https://github.com/janvrany/lttng-ci"
-    git -C "${SCRIPTDIR}" fetch origin --depth 1 5a969023c2dd469751ed1af2231c2d1ac54a773d
-    git -C "${SCRIPTDIR}" checkout FETCH_HEAD
 fi
 
 #

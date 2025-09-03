@@ -20,12 +20,12 @@ on Windows.
 
 ## `test.sh`
 
-[test.sh][1] is a bash script to build GDB and run GDB testsuite using [scripts
-from LTTng][5]. (Probably only) useful for GDB development.
+[test.sh][1] is a bash script to build GDB and run GDB testsuite using copy of
+[scripts from LTTng][5]. (Probably only) useful for GDB development.
 
 
 [1]: https://github.com/janvrany/binutils-gdb-devscripts/blob/master/release.sh
 [2]: https://github.com/janvrany/binutils-gdb.git
 [3]: https://github.com/janvrany/binutils-gdb-devscripts/blob/master/test.sh
 [4]: https://www.msys2.org/
-[5]: https://github.com/lttng/lttng-ci
+[5]: https://github.com/lttng/lttng-ci/tree/5a969023c2dd469751ed1af2231c2d1ac54a773d
