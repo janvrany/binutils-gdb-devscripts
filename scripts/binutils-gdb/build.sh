@@ -939,6 +939,14 @@ EOF
 cat <<'EOF' > known-failures-re-fission-dwp
 EOF
 
+#
+# Add extra known failures from file. This is useful when one is only interested
+# in not introducing regression compared to some reference ("master" build)
+#
+if [ -f "${WORKSPACE}/known-failures-${target_board}" ]; then
+    cat "${WORKSPACE}/known-failures-${target_board}" >> "known-failures-${target_board}"
+fi
+
 known_failures_file="known-failures-${target_board}"
 known_failures_re_file="known-failures-re-${target_board}"
 grep --invert-match --fixed-strings --file="$known_failures_file" "${WORKSPACE}/results/gdb.sum" | \
