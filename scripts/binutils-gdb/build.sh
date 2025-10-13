@@ -967,9 +967,6 @@ if [[ -s "${WORKSPACE}/results/gdb.fail.sum" ]]; then
     failed_tests=1
 fi
 
-# Clean the build directory
-$MAKE clean
-
 # Exit with failure if pre-commit or any of the tests failed.
 exit $((failed_pre_commit || failed_tests))
 
