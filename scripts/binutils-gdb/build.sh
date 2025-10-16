@@ -225,7 +225,7 @@ $MAKE install DESTDIR="$WORKSPACE" MAKEINFO=true
 $MAKE -C gdb/testsuite site.exp
 # shellcheck disable=SC2016
 echo 'set gdb_test_timeout [expr 5 * $timeout]' >> gdb/testsuite/site.exp
-$MAKE -C gdb --keep-going check RUNTESTFLAGS="--target_board=$target_board" || true
+$MAKE -j "$($NPROC)" -C gdb --keep-going check RUNTESTFLAGS="--target_board=$target_board" || true
 
 # Copy the dejagnu test results for archiving before cleaning the build dir
 mkdir "${WORKSPACE}/results"
