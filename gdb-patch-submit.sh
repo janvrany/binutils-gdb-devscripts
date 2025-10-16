@@ -72,13 +72,15 @@ if [ "$PUSH" == "yes" ]; then
     cat <<END
 Once you're happy:
 
- 1. test again!
+ 1. make sure commits have Approved-By: signature.
 
- 2. push to upstream ang hope everything is going to be all right...
+ 2. test again!
+
+ 3. push to upstream ang hope everything is going to be all right...
 
     git push origin ${BRANCH}:master
 
- 3. send "pushed" email to ${TO}:
+ 4. send "pushed" email to ${TO}:
 
     git send-email --to '${TO}' ${PATCHDIR}${PATCHVER}
 
