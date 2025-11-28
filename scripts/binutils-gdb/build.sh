@@ -102,8 +102,8 @@ CXX="c++"
 # Add compiler-specific flags if needed
 major=$($CC -dumpversion | sed -e 's#\..*$##g')
 if [ "$major" -ge 14 ]; then
-    CFLAGS+="-Wno-error=array-bounds"
-    CXXFLAGS+="-Wno-error=array-bounds"
+    CFLAGS+="-Wno-error=array-bounds -Wno-error=nonnull"
+    CXXFLAGS+="-Wno-error=array-bounds -Wno-error=nonnull"
 fi
 
 if use_ccache; then
