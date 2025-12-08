@@ -45,6 +45,7 @@ mkdir -p "${GDB_BLD}"
 		'--disable-guile' \
 		"--with-python=${HOME}/Projects/gdb/cpython/build/install/bin/python3" \
 		'--with-debuginfod' \
+		'--with-separate-debug-dir=/usr/lib/debug' \
 		'--enable-silent-rules' \
 		'--enable-werror' \
 		'--enable-build-warnings' \

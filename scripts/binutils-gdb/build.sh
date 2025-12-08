@@ -181,7 +181,11 @@ case "$conf" in
     # Enable optional features
     CONF_OPTS+=("--enable-targets=all" "--with-expat=yes" "--with-python=python3" "--with-guile" "--enable-libctf")
 
-    CONF_OPTS+=("--enable-build-warnings" "--enable-gdb-build-warnings" "--enable-unit-tests" "--enable-ubsan")
+    # More optional features
+    CONF_OPTS+=("--with-debuginfod" "--with-separate-debug-dir=/usr/lib/debug" "--enable-unit-tests")
+
+    # Warnings and sanitizers
+    CONF_OPTS+=("--enable-build-warnings" "--enable-gdb-build-warnings" "--enable-ubsan")
 
     ;;
 esac
