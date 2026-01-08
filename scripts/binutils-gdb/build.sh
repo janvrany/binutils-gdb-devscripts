@@ -252,6 +252,13 @@ FAIL: gdb.replay/missing-thread.exp: non_stop=off: with unmodified log: replay_w
 FAIL: gdb.replay/missing-thread.exp: non_stop=off: missing 1 thread log: replay_with_log: continue
 FAIL: gdb.replay/missing-thread.exp: non_stop=off: missing 2 threads log: replay_with_log: continue
 FAIL: gdb.reverse/test_ioctl_TCSETSW.exp: handle TCSETSW
+FAIL: gdb.base/corefile.exp: warn about coremmap.data missing
+FAIL: gdb.base/corefile.exp: accessing read-only mmapped data in core file with coremmap.data removed
+FAIL: gdb.base/corefile2.exp: renamed binfile: load core file without having first loaded binfile
+FAIL: gdb.debuginfod/corefile-mapped-file.exp: load corefile with library file missing
+FAIL: gdb.debuginfod/corefile-mapped-file.exp: check value of pointer is unavailable with library file missing
+FAIL: gdb.debuginfod/corefile-mapped-file.exp: check value of pointer is unavailable with wrong library in place
+ERROR: GDB process no longer exists
 EOF
 
 cat <<'EOF' > known-failures-re-unix
