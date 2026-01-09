@@ -239,18 +239,6 @@ cp gdb/testsuite/gdb.sum "${WORKSPACE}/results/"
 # Filter out some known failures.  There is one file per target board.
 cat <<'EOF' > known-failures-unix
 FAIL: gdb.base/attach-deleted-exec.exp: attach to inferior
-FAIL: gdb.replay/missing-thread.exp: non_stop=on: with unmodified log: replay_with_log: gdb_breakpoint: set breakpoint at main
-FAIL: gdb.replay/missing-thread.exp: non_stop=on: with unmodified log: replay_with_log: continue (the program is no longer running)
-FAIL: gdb.replay/missing-thread.exp: non_stop=on: missing 2 threads log: replay_with_log: continue to breakpoint: continuing to main (the program is no longer running)
-FAIL: gdb.replay/missing-thread.exp: non_stop=on: missing 2 threads log: replay_with_log: continue (the program is no longer running)
-FAIL: gdb.replay/missing-thread.exp: non_stop=off: record_initial_logfile: continue (timeout)
-FAIL: gdb.replay/missing-thread.exp: non_stop=off: record_initial_logfile: disconnect after seeing signal (timeout)
-FAIL: gdb.replay/missing-thread.exp: non_stop=off: couldn't update remote replay log (drop 1 case)
-FAIL: gdb.replay/missing-thread.exp: non_stop=off: couldn't update remote replay log (drop 2 case)
-DUPLICATE: gdb.replay/missing-thread.exp: non_stop=off: couldn't update remote replay log (drop 2 case)
-FAIL: gdb.replay/missing-thread.exp: non_stop=off: with unmodified log: replay_with_log: continue
-FAIL: gdb.replay/missing-thread.exp: non_stop=off: missing 1 thread log: replay_with_log: continue
-FAIL: gdb.replay/missing-thread.exp: non_stop=off: missing 2 threads log: replay_with_log: continue
 FAIL: gdb.reverse/test_ioctl_TCSETSW.exp: handle TCSETSW
 FAIL: gdb.base/corefile.exp: warn about coremmap.data missing
 FAIL: gdb.base/corefile.exp: accessing read-only mmapped data in core file with coremmap.data removed
@@ -258,10 +246,10 @@ FAIL: gdb.base/corefile2.exp: renamed binfile: load core file without having fir
 FAIL: gdb.debuginfod/corefile-mapped-file.exp: load corefile with library file missing
 FAIL: gdb.debuginfod/corefile-mapped-file.exp: check value of pointer is unavailable with library file missing
 FAIL: gdb.debuginfod/corefile-mapped-file.exp: check value of pointer is unavailable with wrong library in place
-ERROR: GDB process no longer exists
 EOF
 
 cat <<'EOF' > known-failures-re-unix
+^(FAIL|DUPLICATE): gdb.replay/missing-thread.exp: .*$
 EOF
 
 cat <<'EOF' > known-failures-native-gdbserver
