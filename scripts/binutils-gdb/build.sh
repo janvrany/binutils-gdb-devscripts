@@ -185,8 +185,16 @@ case "$conf" in
     CONF_OPTS+=("--with-debuginfod" "--with-separate-debug-dir=/usr/lib/debug" "--enable-unit-tests")
 
     # Warnings and sanitizers
-    CONF_OPTS+=("--enable-build-warnings" "--enable-gdb-build-warnings" "--enable-ubsan")
-
+    CONF_OPTS+=("--enable-build-warnings" "--enable-gdb-build-warnings")
+    case "$(uname -m)" in
+        armv7l)
+            # UBSAN causes GDB to crash, see PR/33841
+            # https://sourceware.org/bugzilla/show_bug.cgi?id=33841
+            ;;
+        *)
+            CONF_OPTS+=("--enable-ubsan")
+            ;;
+    esac
     ;;
 esac
 

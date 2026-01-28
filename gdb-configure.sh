@@ -28,12 +28,23 @@ test -f "${GDB_SRC}/gdb/MAINTAINERS" || error "Not a GDB source directory: ${GDB
 : ${CXXFLAGS:="${CFLAGS} -fdiagnostics-all-candidates -D_GLIBCXX_DEBUG=1 -D_GLIBCXX_DEBUG_PEDANTIC=1 -D_GLIBCXX_SANITIZE_VECTOR=1"}
 : ${LDFLAGS:="-fsanitize=address"}
 
+case "$(uname -m)" in
+	armv7l)
+		# UBSAN causes GDB to crash, see PR/33841
+		# https://sourceware.org/bugzilla/show_bug.cgi?id=33841
+		enable_ubsan=''
+		;;
+	*)
+		enable_ubsan='--enable-ubsan'
+		;;
+esac
+
 src=$(realpath "${GDB_SRC}" --relative-to="${GDB_BLD}")
 mkdir -p "${GDB_BLD}"
 
 (cd "${GDB_BLD}" && \
 	"${src}/configure"  \
-		"CC=${CC}" "CXX=${CXX}" "CFLAGS=$CFLAGS" "CXXFLAGS=$CXXFLAGS" "LDFLAGS=${LDFLAGS}" \
+		"CC=${CC}" "CXX=${CXX}" "CFLAGS=$CFLAGS" "CXXFLAGS=$CXXFLAGS" "LDFLAGS=$LDFLAGS" \
 		"--prefix=$(mktemp -d)" \
 		'--disable-binutils' \
 		'--disable-gold' \
@@ -52,4 +63,4 @@ mkdir -p "${GDB_BLD}"
 		'--enable-gdb-build-warnings' \
 		'--enable-targets=all' \
 		'--enable-unit-tests' \
-		'--enable-ubsan')
+		$enable_ubsan)
