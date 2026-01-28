@@ -43,7 +43,7 @@ mkdir -p "${GDB_BLD}"
 		'--disable-gprofng' \
 		'--disable-gas' \
 		'--disable-guile' \
-		"--with-python=${HOME}/Projects/gdb/cpython/build/install/bin/python3" \
+		"--with-python=$(ls ${HOME}/Projects/gdb/cpython/build/install/bin/python3 2> /dev/null || command -v python3)" \
 		'--with-debuginfod' \
 		'--with-separate-debug-dir=/usr/lib/debug' \
 		'--enable-silent-rules' \
