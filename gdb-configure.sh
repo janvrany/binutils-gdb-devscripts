@@ -24,9 +24,9 @@ test -f "${GDB_SRC}/gdb/MAINTAINERS" || error "Not a GDB source directory: ${GDB
 
 : ${CC:="$(which ccache > /dev/null && echo 'ccache ')gcc"}
 : ${CXX:="$(which ccache > /dev/null && echo 'ccache ')g++"}
-: ${CFLAGS:="-fno-inline -g -O0 -fvar-tracking-assignments -fdiagnostics-color=always -fmax-errors=1 -Wno-error=calloc-transposed-args"}
+: ${CFLAGS:="-fno-inline -g -O0 -fvar-tracking-assignments -fdiagnostics-color=always -fmax-errors=1 -fsanitize=address -Wno-error=calloc-transposed-args"}
 : ${CXXFLAGS:="${CFLAGS} -fdiagnostics-all-candidates -D_GLIBCXX_DEBUG=1 -D_GLIBCXX_DEBUG_PEDANTIC=1 -D_GLIBCXX_SANITIZE_VECTOR=1"}
-: ${LDFLAGS:=""}
+: ${LDFLAGS:="-fsanitize=address"}
 
 src=$(realpath "${GDB_SRC}" --relative-to="${GDB_BLD}")
 mkdir -p "${GDB_BLD}"
