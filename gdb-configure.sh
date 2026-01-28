@@ -2,16 +2,16 @@
 #
 set -e
 
-GDB_SRC=$(pwd)
-GDB_BLD="${GDB_SRC}"
+GDB_SRC=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+GDB_BLD=$(pwd)
 
 while getopts "h:s:b:" o; do
     case "${o}" in
     	h)
-    		;;
+		;;
         s)
-            GDB_SRC=${OPTARG}
-            ;;
+		GDB_SRC=${OPTARG}
+		;;
         b)
         	GDB_BLD=${OPTARG}
         	;;
