@@ -4,6 +4,7 @@ set -e
 
 : ${GDB_REPO:=git://sourceware.org/git/binutils-gdb.git}
 : ${GDB_BRANCH:=master}
+: ${GDB_TEST_TIMEOUT_FACTOR:=10}
 : ${WORKSPACE:=$(realpath $(dirname $0))}
 
 SRCDIR=$WORKSPACE/src/binutils-gdb
@@ -48,6 +49,7 @@ function mktemp() {
     fi
 }
 
+timeout_factor=$GDB_TEST_TIMEOUT_FACTOR
+
 . "${SCRIPTDIR}/scripts/common/print.sh"
 . "${SCRIPTDIR}/scripts/binutils-gdb/build.sh"
-
