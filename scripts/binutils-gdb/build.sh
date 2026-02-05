@@ -73,7 +73,7 @@ target_board=${target_board:-unix}
 timeout_factor=${timeout_factor:-10}
 
 
-SRCDIR="$WORKSPACE/src/binutils-gdb"
+SRCDIR="${SRCDIR:-$WORKSPACE/src/binutils-gdb}"
 TMPDIR="$WORKSPACE/tmp"
 PREFIX="/build"
 
@@ -340,9 +340,33 @@ while read -r line; do
 done < "$known_failures_file" > "${WORKSPACE}/results/known-failures-not-found.sum"
 
 failed_tests=0
+
+set +x
+
 if [[ -s "${WORKSPACE}/results/gdb.fail.sum" ]]; then
     failed_tests=1
+    echo '================ FAILURES ================'
+    cat  "${WORKSPACE}/results/gdb.fail.sum"
+    echo '=========================================='
+    echo ''
 fi
+
+if [[ -s "${WORKSPACE}/results/known-failures-not-found.sum" ]]; then
+    echo '============== FIXED TESTS ==============='
+    cat  "${WORKSPACE}/results/known-failures-not-found.sum"
+    echo '=========================================='
+fi
+
+echo "
+=============== SUMMARY =================='
+COMMIT: $(git -C "$SRCDIR" log --oneline -1)
+TARGET: $("$SRCDIR"/config.guess)
+BOARD:  $target_board
+
+    $(if [ $failed_tests == 0 ]; then echo 'ALL TESTS PASSED'; else echo "FAILED (see above)"; fi)
+
+=========================================="
+
 
 # Exit with failure if pre-commit or any of the tests failed.
 exit $((failed_pre_commit || failed_tests))
