@@ -4,6 +4,7 @@ set -e
 
 : ${GDB_REPO:=git://sourceware.org/git/binutils-gdb.git}
 : ${GDB_BRANCH:=master}
+: ${GDB_TEST_BOARD:=unix}
 : ${GDB_TEST_TIMEOUT_FACTOR:=10}
 : ${WORKSPACE:=$(realpath $(dirname $0))}
 
@@ -49,6 +50,7 @@ function mktemp() {
     fi
 }
 
+target_board=$GDB_TEST_BOARD
 timeout_factor=$GDB_TEST_TIMEOUT_FACTOR
 
 . "${SCRIPTDIR}/scripts/common/print.sh"
