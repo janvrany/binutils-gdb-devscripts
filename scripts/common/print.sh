@@ -9,7 +9,11 @@ COLOR_BLUE='\033[0;34m'
 COLOR_NONE='\033[0m' # No Color
 
 print_blue() {
-    echo -e "${COLOR_BLUE}$1${COLOR_NONE}"
+    if [ -t 1 ]; then
+        echo -e "${COLOR_BLUE}$1${COLOR_NONE}"
+    else
+        echo -e "$1"
+    fi
 }
 
 print_hardware() {
