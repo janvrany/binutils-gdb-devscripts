@@ -262,6 +262,12 @@ cat <<'EOF' > known-failures-re-unix
 ^(FAIL|DUPLICATE): gdb.replay/missing-thread.exp: .*$
 EOF
 
+cat <<'EOF' > known-failures-readnow
+EOF
+
+cat <<'EOF' > known-failures-re-readnow
+EOF
+
 cat <<'EOF' > known-failures-native-gdbserver
 EOF
 
