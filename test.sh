@@ -3,23 +3,53 @@
 set -e
 
 : ${GDB_REPO:=git://sourceware.org/git/binutils-gdb.git}
-: ${GDB_BRANCH:=master}
+: ${GDB_BRANCH:=}
 : ${GDB_TEST_BOARD:=unix}
 : ${GDB_TEST_TIMEOUT_FACTOR:=10}
 : ${WORKSPACE:=$(realpath $(dirname $0))}
 
+while getopts ":s:b:" o; do
+    case "${o}" in
+        s)
+            d=${OPTARG}
+            if [ ! -d "$d" ]; then
+            	echo "ERROR: not a local GDB repository: $d"
+            	exit 1
+            fi
+            if [ ! -e "$d/.git" ]; then
+            	echo "ERROR: not a local GDB repository: $d"
+            	exit 1
+            fi
+            if [ ! -f "$d/gdb/MAINTAINERS" ]; then
+            	echo "ERROR: not a local GDB repository: $d"
+            	exit 1
+            fi
+            GDB_REPO="$(realpath $d)"
+            GDB_BRANCH=
+            ;;
+       	b)
+       		GDB_TEST_BOARD=${OPTARG}
+       		;;
+    esac
+done
+shift $((OPTIND-1))
+
 SRCDIR=$WORKSPACE/src/binutils-gdb
 SCRIPTDIR=$WORKSPACE
 
+#
+# Fetch the source code
+#
 if [ ! -d "${SRCDIR}" ]; then
     mkdir -p $(dirname $SRCDIR)
-    git clone --depth 1 --branch "$GDB_BRANCH" "$GDB_REPO" "$SRCDIR"
-else
-    if git -C "${SRCDIR}" symbolic-ref -q HEAD; then
-        git -C "${SRCDIR}" pull
-    fi
+    git init $SRCDIR
 fi
+git -C "$SRCDIR" fetch --depth 1 "$GDB_REPO" $GDB_BRANCH
+git -C "$SRCDIR" checkout -f FETCH_HEAD
 
+#
+# Delete leftover results
+#
 rm -rf results
 
 print_header() {
