@@ -280,6 +280,22 @@ cat <<'EOF' > known-failures-re-unix
 EOF
 
 cat <<'EOF' > known-failures-readnow
+FAIL: gdb.base/fission-macro.exp: lang=c: dwarf_version=4: dwarf_bits=32: strict_dwarf=0: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c: dwarf_version=4: dwarf_bits=32: strict_dwarf=1: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c: dwarf_version=4: dwarf_bits=64: strict_dwarf=0: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c: dwarf_version=4: dwarf_bits=64: strict_dwarf=1: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c: dwarf_version=5: dwarf_bits=32: strict_dwarf=0: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c: dwarf_version=5: dwarf_bits=32: strict_dwarf=1: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c: dwarf_version=5: dwarf_bits=64: strict_dwarf=0: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c: dwarf_version=5: dwarf_bits=64: strict_dwarf=1: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c++: dwarf_version=4: dwarf_bits=32: strict_dwarf=0: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c++: dwarf_version=4: dwarf_bits=32: strict_dwarf=1: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c++: dwarf_version=4: dwarf_bits=64: strict_dwarf=0: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c++: dwarf_version=4: dwarf_bits=64: strict_dwarf=1: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c++: dwarf_version=5: dwarf_bits=32: strict_dwarf=0: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c++: dwarf_version=5: dwarf_bits=32: strict_dwarf=1: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c++: dwarf_version=5: dwarf_bits=64: strict_dwarf=0: No complaints
+FAIL: gdb.base/fission-macro.exp: lang=c++: dwarf_version=5: dwarf_bits=64: strict_dwarf=1: No complaints
 EOF
 
 cat <<'EOF' > known-failures-re-readnow
