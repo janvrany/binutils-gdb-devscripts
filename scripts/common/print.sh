@@ -190,5 +190,11 @@ print_tooling() {
         abidw --version
     fi
 
+    print_blue "ulimit (soft)"
+    ulimit -Sa
+
+    print_blue "ulimit (hard)"
+    ulimit -Ha
+
     set -ex
 }
