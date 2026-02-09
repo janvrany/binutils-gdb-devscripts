@@ -147,8 +147,14 @@ print_hardware || true
 print_os || true
 print_tooling || true
 
+#
+# Print and clear CCache stats
+#
 if use_ccache; then
-    ccache -c
+    echo '============== CCache stats ==============='
+    ccache -sz
+    echo
+    echo
 fi
 
 # This job has been seen generating cores in /tmp, filling and and causing
@@ -229,6 +235,17 @@ esac
 
 # BUILD!
 $MAKE -j "$($NPROC)" V=1 MAKEINFO=true
+
+#
+# Print CCache stats after the build
+#
+if use_ccache; then
+    echo '============== CCache stats ==============='
+    ccache -s
+    echo
+    echo
+fi
+
 
 # Install in the workspace
 $MAKE install DESTDIR="$WORKSPACE" MAKEINFO=true
