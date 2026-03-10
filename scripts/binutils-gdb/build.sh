@@ -256,7 +256,7 @@ $MAKE -C gdb/testsuite site.exp
 
 # shellcheck disable=SC2016
 echo "set gdb_test_timeout [expr $timeout_factor * \$timeout]" >> gdb/testsuite/site.exp
-$MAKE -j "$($NPROC)" -C gdb --keep-going check RUNTESTFLAGS="--target_board=$target_board" FORCE_PARALLEL=1 || true
+$MAKE -j "$($NPROC)" -C gdb --keep-going check RUNTESTFLAGS="--target_board=$target_board" FORCE_PARALLEL=1 SHELL=/bin/bash || true
 
 # Copy the dejagnu test results for archiving before cleaning the build dir
 mkdir "${WORKSPACE}/results"
