@@ -383,10 +383,15 @@ set +x
 
 if [[ -s "${WORKSPACE}/results/gdb.fail.sum" ]]; then
     failed_tests=1
+    failed_files=$(grep '^(FAIL|UNRES)' "${WORKSPACE}/results/gdb.fail.sum" | cut -d : -f 2  | uniq | tr '\n' ' ')
+
     echo '================ FAILURES ================'
     cat  "${WORKSPACE}/results/gdb.fail.sum"
     echo '=========================================='
     echo ''
+    echo 'To re-run failed tests, execute'
+    echo ''
+    echo "    make check 'RUNTESTFLAGS=--target_board=${target_board}' 'TESTS=${failed_files}'"
 fi
 
 if [[ -s "${WORKSPACE}/results/known-failures-not-found.sum" ]]; then
