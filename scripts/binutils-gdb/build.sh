@@ -265,7 +265,6 @@ cp gdb/testsuite/gdb.sum "${WORKSPACE}/results/"
 
 # Filter out some known failures.  There is one file per target board.
 cat <<'EOF' > known-failures-unix
-FAIL: gdb.base/attach-deleted-exec.exp: attach to inferior
 FAIL: gdb.reverse/test_ioctl_TCSETSW.exp: handle TCSETSW
 FAIL: gdb.base/corefile.exp: warn about coremmap.data missing
 FAIL: gdb.base/corefile.exp: accessing read-only mmapped data in core file with coremmap.data removed
