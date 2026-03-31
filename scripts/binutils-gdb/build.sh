@@ -383,7 +383,7 @@ set +x
 
 if [[ -s "${WORKSPACE}/results/gdb.fail.sum" ]]; then
     failed_tests=1
-    failed_files=$(grep '^(FAIL|UNRES)' "${WORKSPACE}/results/gdb.fail.sum" | cut -d : -f 2  | uniq | tr '\n' ' ')
+    failed_files=$(egrep '^(FAIL|UNRES)' "${WORKSPACE}/results/gdb.fail.sum" | cut -d : -f 2  | uniq | tr '\n' ' ')
 
     echo '================ FAILURES ================'
     cat  "${WORKSPACE}/results/gdb.fail.sum"
