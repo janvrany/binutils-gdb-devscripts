@@ -95,7 +95,7 @@ mkdir -p "$TMPDIR"
 
 
 CFLAGS="-O2 -g -fsanitize=address "
-CXXFLAGS="-O2 -g -fsanitize=address -D_GLIBCXX_DEBUG=1 "
+CXXFLAGS="-O2 -g -fsanitize=address "
 LDFLAGS="-fsanitize=address"
 CC="cc"
 CXX="c++"
