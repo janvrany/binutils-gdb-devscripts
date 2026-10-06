@@ -94,18 +94,33 @@ rm -rf "$TMPDIR"
 mkdir -p "$TMPDIR"
 
 
-CFLAGS="-O2 -g -fsanitize=address "
-CXXFLAGS="-O2 -g -fsanitize=address "
-LDFLAGS="-fsanitize=address"
+CFLAGS="-O2 -g"
+CXXFLAGS="-O2 -g"
+LDFLAGS=""
 CC="cc"
 CXX="c++"
 
 # Add compiler-specific flags if needed
 major=$($CC -dumpversion | sed -e 's#\..*$##g')
 if [ "$major" -ge 14 ]; then
-    CFLAGS+="-Wno-error=array-bounds -Wno-error=nonnull"
-    CXXFLAGS+="-Wno-error=array-bounds -Wno-error=nonnull"
+    CFLAGS+=" -Wno-error=array-bounds -Wno-error=nonnull"
+    CXXFLAGS+=" -Wno-error=array-bounds -Wno-error=nonnull"
 fi
+
+# Add -fsanitize-address except for some targets when it is known
+# to not work properly.
+case "$(uname -m)" in
+    armv7l)
+        # -fsanitize=address causes problems on ARMv7 (AArch32)
+        ;;
+    *)
+        # On all other targets, use -fsanitize=address
+        CFLAGS+=" -fsanitize=address"
+        CXXFLAGS+=" -fsanitize=address"
+        LDFLAGS+=" -fsanitize=address"
+        ;;
+esac
+
 
 if use_ccache; then
     CC="ccache $CC"
